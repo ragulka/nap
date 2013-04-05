@@ -238,7 +238,9 @@ module.exports.preprocessors = preprocessors =
     contents
     
   '.less': (contents, filename) ->
-    require('less').render contents, (err, out) ->
+    require('less').render contents, {
+      paths: [ path.join( process.cwd(), path.dirname( filename ) )]
+    }, (err, out) ->
       throw(err) if err
       contents = out
     contents
